@@ -1,22 +1,22 @@
 {
   "development": {
-    "username": "qxbovsxt_siir",
-    "password": "siirpassword@123",
-    "database": "qxbovsxt_siir",
+    "username": "qxbovsxt_SIIR",
+    "password": "SIIR@123123",
+    "database": "qxbovsxt_SIIR",
     "host": "103.108.220.133",
     "dialect": "mysql"
   },
   "test": {
-    "username": "qxbovsxt_siir",
-    "password": "siirpassword@123",
-    "database": "qxbovsxt_siir",
+    "username": "qxbovsxt_SIIR",
+    "password": "SIIR@123123",
+    "database": "qxbovsxt_SIIR",
     "host": "103.108.220.133",
     "dialect": "mysql"
   },
   "production": {
-    "username": "qxbovsxt_siir",
-    "password": "siirpassword@123",
-    "database": "qxbovsxt_siir",
+    "username": "qxbovsxt_SIIR",
+    "password": "SIIR@123123",
+    "database": "qxbovsxt_SIIR",
     "host": "103.108.220.133",
     "dialect": "mysql"
   }

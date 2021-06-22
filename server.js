@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 });
 
 // routes
-app.use("/api/v1/shayri", require("./src/app/routes/shayri"));
+app.use("/api/v1/shayri", require("./src/routes/shayri"));
 
 // error handling
 app.use(notFound);
