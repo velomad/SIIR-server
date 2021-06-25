@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   UserCategory.init(
     {
       userId: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         foreignKey: true,
         references: {
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       categoryId: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         foreignKey: true,
         references: {

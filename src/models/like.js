@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Like.init({
     shayrId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
       references: {
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     userId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
       references: {

@@ -7,7 +7,7 @@ module.exports = {
       const payload = {};
       const secret = secretKey;
       const options = {
-        expiresIn: "1y",
+        expiresIn: "5y",
         issuer: "couponshoupon.com",
         audience: userId,
       };

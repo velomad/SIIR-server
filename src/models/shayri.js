@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
   };
   Shayri.init({
     shayri: {
-      type: Sequelize.TEXT,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     userId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
       references: {
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     categoryId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
       references: {
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     shayriBackgroundImageUrl: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
   }, {
     sequelize,

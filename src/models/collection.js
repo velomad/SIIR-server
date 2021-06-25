@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Collection.init({
     userId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
       references: {
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     collectionImageUrl: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
   }, {

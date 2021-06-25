@@ -6,7 +6,6 @@ const app = express();
 const cors = require("cors");
 const multer = require("multer");
 const morgan = require("morgan");
-const path = require("path");
 
 const { notFound, errorHandling } = require("./src/errorHandler");
 const { fileStorage, fileFilter } = require("./src/multer");
@@ -21,13 +20,15 @@ app.use(
 );
 
 // eleminates the null fields from the response object
-app.set("json replacer", (k, v) => (v === null ? undefined : v));
+// app.set("json replacer", (k, v) => (v === null ? undefined : v));
 
 app.get("/", (req, res) => {
   res.send("test");
 });
 
 // routes
+app.use("/api/v1/auth", require("./src/routes/auth"));
+app.use("/api/v1/category", require("./src/routes/catgeory"));
 app.use("/api/v1/shayri", require("./src/routes/shayri"));
 
 // error handling
