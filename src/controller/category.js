@@ -2,6 +2,7 @@ const createError = require("http-errors");
 const models = require("../models");
 const { destroy, upload } = require("../cloudinary");
 const { getPublicId } = require("../utils/cloudinary");
+const { Op } = require("sequelize");
 
 module.exports = {
   create: async (req, res, next) => {
@@ -100,6 +101,73 @@ module.exports = {
       });
 
       res.status(200).json({ status: "success", message: "category removed" });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  addUserCategories: async (req, res, next) => {
+    const categories = req.body.categories;
+    const { aud } = req.payload;
+
+    try {
+      let data = [];
+
+      categories.forEach((element) => {
+        data.push({ userId: aud, categoryId: element });
+      });
+
+      const result = await models.UserCategory.bulkCreate(data);
+
+      res.status(201).json({ status: "success", result });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  getUserCategories: async (req, res, next) => {
+    const { aud } = req.payload;
+
+    try {
+      const result = await models.UserCategory.findAll({
+        where: { userId: aud },
+      });
+
+      res.status(200).json({
+        status: "success",
+        results: result.length,
+        categories: result,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  toggleUserCategory: async (req, res, next) => {
+    const categoryId = req.params.categoryId;
+    const { aud } = req.payload;
+    let categoryAdded = null;
+    try {
+      const find = await models.UserCategory.findOne({
+        where: { [Op.and]: [{ categoryId: categoryId }, { userId: aud }] },
+      });
+
+      if (find !== null) {
+        await models.UserCategory.destroy({
+          where: { [Op.and]: [{ categoryId: categoryId }, { userId: aud }] },
+        });
+      } else {
+        categoryAdded = await models.UserCategory.create({
+          userId: aud,
+          categoryId,
+        });
+      }
+
+      res.status(200).json({
+        status: "success",
+        message: "categoty toggeled",
+        result: find ? "category removed" : categoryAdded,
+      });
     } catch (error) {
       next(error);
     }
