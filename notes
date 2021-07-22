@@ -1,4 +1,5 @@
 [*]. array of categories to be added to show all shayries with the multiple categories
 [*]. add paginated response to the all shayries of user preference
-[x]. add add likes count with all the shayri
-[x]. show userId details for particular shayri
+[*]. add add likes count with all the shayri
+[*]. show userId details for particular shayri
+[x]. add casceding operations to the tables 

@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", require("./src/routes/auth"));
 app.use("/api/v1/category", require("./src/routes/catgeory"));
 app.use("/api/v1/shayri", require("./src/routes/shayri"));
+app.use("/api/v1/collection", require("./src/routes/collection"));
 
 // error handling
 app.use(notFound);

@@ -1,13 +1,14 @@
 module.exports = paginate = async (
   model,
+  associations,
   pageSize,
   pageLimit,
   search,
   next
 ) => {
   try {
-    const limit = parseInt(pageLimit, 10) || 10;
-    const page = parseInt(pageSize, 10) || 1;
+    const limit = parseInt(pageLimit) || 10;
+    const page = parseInt(pageSize) || 1;
 
     let options = {
       offset: getOffset(page, limit),
@@ -15,17 +16,28 @@ module.exports = paginate = async (
     };
 
     if (Object.keys(search).length) {
-      options = { search, ...options };
+      options = {
+        ...search,
+        ...options,
+      };
+    }
+
+    if (associations.length > 0) {
+      options = { ...options, ...associations[0] };
     }
 
     let { count, rows } = await model.findAndCountAll(options);
 
+    console.log(options);
+
     return {
+      totalPages: getTotalPages(count, limit),
       previousPage: getPreviousPage(page),
       currentPage: page,
       nextPage: getNextPage(page, limit, count),
       total: count,
       limit: limit,
+      results: rows.length,
       data: rows,
     };
   } catch (error) {
@@ -50,4 +62,8 @@ const getPreviousPage = (page) => {
     return null;
   }
   return page - 1;
+};
+
+const getTotalPages = (total, limit) => {
+  return Math.ceil(total / limit);
 };
